@@ -1,0 +1,65 @@
+.questionDiv {
+    margin-top: 15px;
+}
+
+.answerDiv {
+    background-color: rgba(154, 255, 167, 0.164);
+    margin-top: 5px;
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.answerHeader {
+    margin-top: 5px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.commentDiv {
+    background-color: rgba(154, 210, 255, 0.164);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 20px;
+    border-radius: 15px;
+    float: right;
+    font-size: 11px;
+    width: 400px;
+}
+
+.commentHeader {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* float: right; */
+    font-size: 12px;
+    width: 400px;
+    font-weight: bold;
+}
+
+.commentAnswerDiv {
+    background-color: rgba(154, 210, 255, 0.164);
+    margin-bottom: 5px;
+    padding: 20px;
+    border-radius: 15px;
+    font-size: 11px;
+    width: 400px;
+}
+
+.warningDiv {
+    padding: 10px;
+    border-radius: 15px;
+    width: 400px;
+    text-align: center;
+    background-color: rgba(255, 0, 0, 0.438);
+}
+
+.tagDiv {
+    background-color: rosybrown;
+    float: left;
+    padding: 7px;
+    border-radius: 15px;
+    margin: 2px;
+}
+
+.clear {
+    clear: both;
+}
