@@ -68,7 +68,7 @@ if (isset($_SESSION["username"])) {
             ],
             [
                 "text" => "Taggar",
-                "url" => "tags",
+                "url" => "question/tags",
                 "title" => "Taggar",
             ],
             [
