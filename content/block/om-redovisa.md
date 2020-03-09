@@ -1,3 +1,3 @@
-#### Redovisa på GitHub
+#### Om mig
 
-Skriv något kort om ditt redovisa-repo och länka till [repot för me/redovisa på GitHub](XXX).
+Jag som har gjort denna sida heter Frida Lindgren. Mitt GitHub konto finns [här](https://github.com/fridalindgren91).
