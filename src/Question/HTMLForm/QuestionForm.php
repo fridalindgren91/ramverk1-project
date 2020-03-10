@@ -56,7 +56,7 @@ class QuestionForm extends FormModel
         $question->question = $questionValue;
         $question->author = $this->di->session->get("username");
         $question->created = date("Y-m-d h:i:s");
-        $question->tags = $this->form->value("tags");
+        $question->tags = strtolower($this->form->value("tags"));
         $question->save();
     }
 

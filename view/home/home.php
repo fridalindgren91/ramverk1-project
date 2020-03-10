@@ -5,6 +5,7 @@ namespace Anax\View;
 $questions = isset($questions) ? $questions : null;
 $tags = isset($tags) ? $tags : null;
 $authors = isset($authors) ? $authors : null;
+$loggedInUser = $this->di->session->get("username");
 
 ?><h1>Välkommen</h1>
 <h2>De fem senaste frågorna</h2>
@@ -23,9 +24,11 @@ if (!$questions) {
         Skapad: <i><?= $question->created ?></i> av 
         <a href="<?= url("profile/visitProfile/{$question->author}"); ?>"><?= $question->author ?></a>
         <div class="questionDiv"><?= $question->question ?></div><br>
-        <a href="<?= url("question/answer/{$question->id}"); ?>">Svara</a><br>
-        <a href="<?= url("question/commentQuestion/{$question->id}"); ?>">Kommentera</a><br><br>
-        <?php $questionCounter++;
+        <?php if (isset($loggedInUser)) {
+            echo '<a href="' . url("question/answer/{$question->id}") . '">Svara</a><br>';
+            echo '<a href="' . url("question/commentQuestion/{$question->id}") . '">Kommentera</a><br><br>';
+        }
+        $questionCounter++;
     endforeach; ?>
 
 <h2>De fem populäraste taggarna</h2>

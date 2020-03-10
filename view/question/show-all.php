@@ -5,6 +5,7 @@ namespace Anax\View;
 $questions = isset($questions) ? $questions : null;
 $answers = isset($answers) ? $answers : null;
 $comments = isset($comments) ? $comments : null;
+$loggedInUser = $this->di->session->get("username");
 
 $urlToView = url("question/create");
 
@@ -25,9 +26,10 @@ endif;
         Skapad: <i><?= $question->created ?></i> av 
         <a href="<?= url("profile/visitProfile/{$question->author}"); ?>"><?= $question->author ?></a>
         <div class="questionDiv"><?= $question->question ?></div><br>
-        <a href="<?= url("question/answer/{$question->id}"); ?>">Svara</a><br>
-        <a href="<?= url("question/commentQuestion/{$question->id}"); ?>">Kommentera</a><br><br>
-        <?php 
+        <?php if (isset($loggedInUser)) {
+            echo '<a href="' . url("question/answer/{$question->id}") . '">Svara</a><br>';
+            echo '<a href="' . url("question/commentQuestion/{$question->id}") . '">Kommentera</a><br><br>';
+        }
             $tags = explode(",", $question->tags);
             if (array_filter($tags)) {
                 for($i = 0; $i < count($tags); $i++) {
