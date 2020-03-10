@@ -26,7 +26,7 @@ class HomeController implements ContainerInjectableInterface
         $questionTags = $question->findAllWhere("? IS NOT NULL", ["tags"]);
         $tagArray = [];
         foreach ($questionTags as $q) {
-            $tags = $q->tags;
+            $tags = strtolower($q->tags);
             $explodedTags = explode(",", $tags);
             for ($i = 0; $i < count($explodedTags); $i++) {
                 array_push($tagArray, $explodedTags[$i]);
