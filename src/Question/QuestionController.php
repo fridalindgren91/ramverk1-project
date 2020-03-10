@@ -133,7 +133,7 @@ class QuestionController implements ContainerInjectableInterface
         foreach ($questions as $question) {
             $tagArray = explode(",", strtolower($question->tags));
             for ($i = 0; $i < count($tagArray); $i++) {
-                if ($tagArray[$i] == $tag) {
+                if ($tagArray[$i] == strtolower($tag)) {
                     array_push($questionArray, $question);
                 }
             }

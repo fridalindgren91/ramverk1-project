@@ -10,11 +10,13 @@ $loggedInUser = $this->di->session->get("username");
 $urlToView = url("question/create");
 
 ?><h1>Diskussion</h1>
+<?php
+    if (isset($loggedInUser)) {
+        echo '<a href="' . $urlToView . '">Skapa en fråga</a>';
+    }
 
-<a href="<?= $urlToView ?>">Skapa en fråga</a>
-
-<?php if (!$questions) : ?>
-    <p>Det finns för närvarande inga diskussioner.</p>
+    if (!$questions) : ?>
+        <p>Det finns för närvarande inga diskussioner.</p>
 <?php
     return;
 endif;
@@ -30,7 +32,7 @@ endif;
             echo '<a href="' . url("question/answer/{$question->id}") . '">Svara</a><br>';
             echo '<a href="' . url("question/commentQuestion/{$question->id}") . '">Kommentera</a><br><br>';
         }
-            $tags = explode(",", $question->tags);
+            $tags = explode(",", strtolower($question->tags));
             if (array_filter($tags)) {
                 for($i = 0; $i < count($tags); $i++) {
                     echo "<div class='tagDiv'><a href='" . url("question/tag/{$tags[$i]}") . "'>" . $tags[$i] . "</a></div>";
