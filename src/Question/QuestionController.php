@@ -128,7 +128,7 @@ class QuestionController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
-        $questions = $question->findAllWhere("? IS NOT NULL", ["tags"]);
+        $questions = strtolower($question->findAllWhere("? IS NOT NULL", ["tags"]));
         $questionArray = [];
         foreach ($questions as $question) {
             $tagArray = explode(",", $question->tags);
@@ -154,7 +154,7 @@ class QuestionController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
-        $questions = $question->findAllWhere("? IS NOT NULL", ["tags"]);
+        $questions = strtolower($question->findAllWhere("? IS NOT NULL", ["tags"]));
         $tagObject = [];
         foreach ($questions as $question) {
             $tagArray = explode(",", $question->tags);
