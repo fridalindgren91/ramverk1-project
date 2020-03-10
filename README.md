@@ -8,3 +8,6 @@
 För att installera detta projekt, kör följande kommandon:  
 1. git clone https://github.com/fridalindgren91/ramverk1-project.git
 2. make install
+3. skapa upp en mysql databas
+4. se till att databasnamnet stämmer överens i sql filerna under sql/ddl med databasnamnet i filen config/database.php
+5. kör sql koden som ligger i sql filerna under sql/ddl för att skapa upp databastabellerna
