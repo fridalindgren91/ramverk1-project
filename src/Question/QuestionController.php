@@ -28,11 +28,15 @@ class QuestionController implements ContainerInjectableInterface
         $comments = new Comment();
         $comments->setDb($this->di->get("dbqb"));
         $allComments = $comments->findAll();
+        $profile = new Profile();
+        $profile->setDb($this->di->get("dbqb"));
+        $users = $profile->findAll();
         
         $page->add("question/show-all", [
             "questions" => array_reverse($allQuestions),
             "answers" => $allAnswers,
             "comments" => $allComments,
+            "users" => $users,
         ]);
 
         return $page->render([

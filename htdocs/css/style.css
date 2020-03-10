@@ -42,6 +42,7 @@
     border-radius: 15px;
     font-size: 11px;
     width: 400px;
+    margin-left: 20px;
 }
 
 .warningDiv {
@@ -62,4 +63,24 @@
 
 .clear {
     clear: both;
+}
+
+.avatar {
+    width: 120px;
+}
+
+.avatar-side {
+    float: left;
+}
+
+.question-side {
+    margin-left: 140px;
+}
+
+.rounded-corners {
+    border-radius: 60px;
+}
+
+.comment-avatar {
+    width: 90px;
 }

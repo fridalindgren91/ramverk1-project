@@ -22,6 +22,12 @@ class CreateUserForm extends FormModel
                     "label" => "Användarnamn",
                     "placeholder" => "Användarnamn",
                 ],
+
+                "email" => [
+                    "type"        => "email",
+                    "label" => "Email",
+                    "placeholder" => "Email",
+                ],
                         
                 "password" => [
                     "type"        => "password",
@@ -42,9 +48,24 @@ class CreateUserForm extends FormModel
     {
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
-
-        $user->username = $this->form->value("username");
-        $user->setPassword($this->form->value("password"));
+        if ($this->form->value("username") == "" || $this->form->value("username") == null) {
+            $this->form->addOutput("<div class='warningDiv'>Du måste fylla i ett användarnamn!</div>");
+            return false;
+        } else {
+            $user->username = $this->form->value("username");
+        }
+        if ($this->form->value("email") == "" || $this->form->value("email") == null) {
+            $this->form->addOutput("<div class='warningDiv'>Du måste fylla i en epostadress!</div>");
+            return false;
+        } else {
+            $user->email = $this->form->value("email");
+        }
+        if ($this->form->value("password") == "" || $this->form->value("password") == null) {
+            $this->form->addOutput("<div class='warningDiv'>Du måste fylla i ett lösenord!</div>");
+            return false;
+        } else {
+            $user->setPassword($this->form->value("password"));
+        }
         $user->save();
         return true;
     }

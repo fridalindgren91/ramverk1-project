@@ -8,6 +8,7 @@ $answers = isset($answers) ? $answers : null;
 $questionsFromAnswers = isset($questionsFromAnswers) ? $questionsFromAnswers : null;
 
 ?><h1>Användarprofil</h1>
+<img src="<?= $gravatar ?>" alt="avatar dog" class="avatar"><br>
 
 <b>Användarnamn:</b> <?= $profile->username ?><br><br>
 <b>Beskrivning:</b><br>

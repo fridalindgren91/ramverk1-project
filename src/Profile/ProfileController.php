@@ -19,9 +19,12 @@ class ProfileController implements ContainerInjectableInterface
         $profile = new Profile();
         $profile->setDb($this->di->get("dbqb"));
         $loggedinUser = $this->di->session->get("username");
+        $user = $profile->find("username", $loggedinUser);
+        $gravatar = $this->getGravatar($user->email);
         
         $page->add("profile/profile", [
-            "details" => $profile->find("username", $loggedinUser),
+            "details" => $user,
+            "gravatar" => $gravatar,
         ]);
 
         return $page->render([
@@ -51,6 +54,8 @@ class ProfileController implements ContainerInjectableInterface
         $page = $this->di->get("page");
         $profile = new Profile();
         $profile->setDb($this->di->get("dbqb"));
+        $userProfile = $profile->find("username", $author);
+        $gravatar = $this->getGravatar($userProfile->email);
         $question = new Question();
         $question->setDb($this->di->get("dbqb"));
         $questions = $question->findAllWhere("author = ?", [$author]);
@@ -65,13 +70,22 @@ class ProfileController implements ContainerInjectableInterface
         }
         
         $page->add("profile/visitProfile", [
-            "profile" => $profile->find("username", $author),
+            "profile" => $userProfile,
             "questions" => $questions,
             "answers" => $answers,
             "questionsFromAnswers" => $questionsFromAnswersArr,
+            "gravatar" => $gravatar,
         ]);
 
         return $page->render([
         ]);
+    }
+
+    public function getGravatar($email)
+    {
+        $default = "https://publicdomainvectors.org/photos/DogProfile.png";
+        $size = 400;
+        $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size;
+        return $grav_url;
     }
 }
