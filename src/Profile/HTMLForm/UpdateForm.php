@@ -27,6 +27,13 @@ class UpdateForm extends FormModel
                     "label" => "Användarnamn",
                 ],
 
+                "email" => [
+                    "type" => "email",
+                    "validation" => ["not_empty"],
+                    "value" => $user->email,
+                    "label" => "Epostadress",
+                ],
+
                 "description" => [
                     "type" => "textarea",
                     "validation" => ["not_empty"],
@@ -60,6 +67,7 @@ class UpdateForm extends FormModel
         $user = new User();
         $user->setDb($this->di->get("dbqb"));
         $user->find("username", $this->form->value("username"));
+        $user->find("email", $this->form->value("email"));
         $user->description = $this->form->value("description");
         $user->save();
         return true;

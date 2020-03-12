@@ -58,6 +58,7 @@ class QuestionForm extends FormModel
         $question->created = date("Y-m-d h:i:s");
         $question->tags = strtolower($this->form->value("tags"));
         $question->save();
+        return true;
     }
 
     public function textfilter($text)

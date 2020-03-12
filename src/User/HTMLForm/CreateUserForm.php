@@ -52,7 +52,13 @@ class CreateUserForm extends FormModel
             $this->form->addOutput("<div class='warningDiv'>Du måste fylla i ett användarnamn!</div>");
             return false;
         } else {
-            $user->username = $this->form->value("username");
+            $checkIfUsernameExist = $user->find("username", $this->form->value("username"));
+            if (isset($checkIfUsernameExist)) {
+                $this->form->addOutput("<div class='warningDiv'>Användarnamnet är upptaget!</div>");
+                return false;
+            } else {
+                $user->username = $this->form->value("username");
+            }
         }
         if ($this->form->value("email") == "" || $this->form->value("email") == null) {
             $this->form->addOutput("<div class='warningDiv'>Du måste fylla i en epostadress!</div>");
@@ -72,6 +78,6 @@ class CreateUserForm extends FormModel
 
     public function callbackSuccess()
     {
-        $this->di->get("response")->redirect("profile")->send();
+        $this->di->get("response")->redirect("user/login")->send();
     }
 }

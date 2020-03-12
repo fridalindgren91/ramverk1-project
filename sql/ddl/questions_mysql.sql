@@ -1,4 +1,4 @@
-USE frlg18;
+USE dbwebb;
 
 SET NAMES utf8;
 

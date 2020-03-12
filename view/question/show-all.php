@@ -27,7 +27,7 @@ endif;
     <?php foreach ($questions as $question) : ?>
         <div class="clear"></div><br>
         <?php foreach ($users as $user) {
-            if ($question->author == $user->username) { ?>
+            if (strtolower($question->author) == strtolower($user->username)) { ?>
                 <div class="avatar-side">
                     <?php $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $user->email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size; ?>
                     <img src="<?= $grav_url ?>" alt="avatar dog" class="avatar rounded-corners">
@@ -58,7 +58,7 @@ endif;
                     echo "<div class='clear'></div>";
                     echo '<div class="commentDiv"><p class="commentHeader">Kommentar</p>';
                     foreach ($users as $user) {
-                        if ($comment->author == $user->username) { ?>
+                        if (strtolower($comment->author) == strtolower($user->username)) { ?>
                             <div class="avatar-side">
                                 <?php $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $user->email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size; ?>
                                 <img src="<?= $grav_url ?>" alt="avatar dog" class="avatar rounded-corners comment-avatar">
@@ -78,7 +78,7 @@ endif;
                     echo "<div class='clear'></div>";
                     echo '<div class="answerDiv"><p class="answerHeader">Svar</p>';
                     foreach ($users as $user) {
-                        if ($answer->author == $user->username) { ?>
+                        if (strtolower($answer->author) == strtolower($user->username)) { ?>
                             <div class="avatar-side">
                                 <?php $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $user->email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size; ?>
                                 <img src="<?= $grav_url ?>" alt="avatar dog" class="avatar rounded-corners">
@@ -96,7 +96,7 @@ endif;
                             echo "<div class='clear'></div>";
                             echo '<div class="commentAnswerDiv"><p class="commentHeader">Kommentar</p>';
                             foreach ($users as $user) {
-                                if ($comment->author == $user->username) { ?>
+                                if (strtolower($comment->author) == strtolower($user->username)) { ?>
                                     <div class="avatar-side">
                                         <?php $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $user->email ) ) ) . "?d=" . urlencode( $default ) . "&s=" . $size; ?>
                                         <img src="<?= $grav_url ?>" alt="avatar dog" class="avatar rounded-corners comment-avatar">
