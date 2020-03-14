@@ -50,6 +50,6 @@ if (!$questions) {
     }
     echo '<div class="clear"></div>';
     for($i = 0; $i < count($authors); $i++) {
-        echo '<a href="' . url("profile/visitProfile/{$authors[$i]}") . '">' . $authors[$i] . '</a>';
+        echo '<a href="' . url("profile/visitProfile/{$authors[$i]}") . '">' . $authors[$i] . '</a><br>';
     }
 ?>

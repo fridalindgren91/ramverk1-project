@@ -32,14 +32,16 @@ class HomeController implements ContainerInjectableInterface
                 array_push($tagArray, $explodedTags[$i]);
             }
         }
+        $authorArray = [];
+        foreach ($allQuestions as $question) {
+            array_push($authorArray, $question->author);
+        }
         $countedTags = array_count_values($tagArray);
         arsort($countedTags);
         $tagSlicedByFive = array_slice(array_keys($countedTags), 0, 5, true);
-
         $answers = new Answer();
         $answers->setDb($this->di->get("dbqb"));
         $allAnswers = $answers->findAll();
-        $authorArray = [];
         foreach ($allAnswers as $a) {
             array_push($authorArray, $a->author);
         }
@@ -54,7 +56,6 @@ class HomeController implements ContainerInjectableInterface
         $countedAuthorArray = array_count_values($authorArray);
         arsort($countedAuthorArray);
         $authorSlicedByFive = array_slice(array_keys($countedAuthorArray), 0, 5, true);
-
         $page->add("home/home", [
             "questions" => array_reverse($allQuestions),
             "tags" => $tagSlicedByFive,
